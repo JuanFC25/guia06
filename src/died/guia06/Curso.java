@@ -1,5 +1,6 @@
 package died.guia06;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -46,16 +47,41 @@ public class Curso {
 	 * @return
 	 */
 	public Boolean inscribir(Alumno a) {
-		log.registrar(this, "inscribir ",a.toString());
+	
+		try {
+			if(a.cumpleConCreditos(creditosRequeridos) && inscriptos.size()< this.cupo && 
+			   a.comprobarCicloLec(this.cicloLectivo)) {
+				log.registrar(this, "inscribir ",a.toString());
+				inscriptos.add(a);
+				return true;
+			}
+		
+		} catch (IOException e) {
+			System.out.println("Ha ocurrido un error con el archivo registro. No se realizo la inscripcion, intente nuevamente");
+			return false;
+		} 
+		
 		return false;
 	}
+	
+	
 	
 	
 	/**
 	 * imprime los inscriptos en orden alfabetico
 	 */
 	public void imprimirInscriptos() {
-		log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+		try {
+			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+
+	public Integer getCicloLec() {
+		return this.cicloLectivo;
 	}
 
 
