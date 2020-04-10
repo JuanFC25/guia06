@@ -53,6 +53,8 @@ public class Curso {
 			   a.comprobarCicloLec(this.cicloLectivo)) {
 				log.registrar(this, "inscribir ",a.toString());
 				inscriptos.add(a);
+				a.InscribirCurso(this);
+				
 				return true;
 			}
 		
@@ -84,5 +86,8 @@ public class Curso {
 		return this.cicloLectivo;
 	}
 
+	public Integer getCreditos() { 
+		return this.creditos;
+	}
 
 }
