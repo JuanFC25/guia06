@@ -1,5 +1,6 @@
 package died.guia06;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -11,6 +12,27 @@ public class Alumno implements Comparable<Alumno>{
 	private List<Curso> aprobados;
 	private Integer creditos;
 
+	//constructores
+	
+	public Alumno() {
+		this.cursando=new ArrayList<Curso>();
+		this.aprobados=new ArrayList<Curso>();
+		
+		
+	}
+	
+	public Alumno(String nombre,Integer nroLibreta,Integer cred) {
+		this.creditos=cred;
+		this.nombre=nombre;
+		this.nroLibreta=nroLibreta;
+		this.cursando=new ArrayList<Curso>();
+		this.aprobados=new ArrayList<Curso>();
+	}
+	
+	
+	//metodos
+	
+	//testeado
 	public Integer creditosObtenidos() {
 		Integer sumaPuntos=0;
 		for(Curso unCurso: aprobados) {
@@ -21,6 +43,7 @@ public class Alumno implements Comparable<Alumno>{
 		return sumaPuntos;
 	}
 
+	//testeado
 	public void aprobar(Curso c) {
 		if(cursando.contains(c)) {
 			cursando.remove(c);
@@ -30,6 +53,7 @@ public class Alumno implements Comparable<Alumno>{
 		System.out.println("Usted no esta cursando el curso seleccionado.");
 	}
 
+	//testeado
 	public void inscripcionAceptada(Curso c) {
 		if(cursando.contains(c)) {
 			System.out.println("Usted esta inscripto en el curso.");
@@ -39,6 +63,7 @@ public class Alumno implements Comparable<Alumno>{
 		}
 		
 	}
+	
 	
 	public boolean cumpleConCreditos(Integer creditosNec) {
 		boolean resultado=false;
@@ -79,4 +104,10 @@ public class Alumno implements Comparable<Alumno>{
 		return this.nombre.compareTo(a.nombre);
 	}
 
+	public List<Curso> getAprobados() {
+		return this.aprobados;
+	}
+	public List<Curso> getCursados() {
+		return this.cursando;
+	}
 }

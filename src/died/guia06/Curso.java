@@ -32,6 +32,17 @@ public class Curso {
 		this.log = new Registro();
 	}
 	
+	public Curso(Integer id,String nombre,Integer cicloLec,Integer cupo, Integer cred,Integer credReq) {
+		this.id=id;
+		this.nombre=nombre;
+		this.cicloLectivo=cicloLec;
+		this.cupo=cupo;
+		this.creditos=cred;
+		this.creditosRequeridos=credReq;
+		this.inscriptos = new ArrayList<Alumno>();
+		this.log = new Registro();
+	}
+	
 
 	/**
 	 * Este método, verifica si el alumno se puede inscribir y si es así lo agrega al curso,
@@ -76,8 +87,7 @@ public class Curso {
 		try {
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			System.out.println("Ha ocurrido un error con el archivo registro. No se realizo la inscripcion, intente nuevamente");
 		}
 	}
 
@@ -90,4 +100,14 @@ public class Curso {
 		return this.creditos;
 	}
 
+	public void setAtributos(Integer id,String nombre,Integer cicloLec,Integer cupo, Integer cred,Integer credReq) {
+		this.id=id;
+		this.nombre=nombre;
+		this.cicloLectivo=cicloLec;
+		this.cupo=cupo;
+		this.creditos=cred;
+		this.creditosRequeridos=credReq;
+		this.inscriptos = new ArrayList<Alumno>();
+		this.log = new Registro();
+	}
 }
