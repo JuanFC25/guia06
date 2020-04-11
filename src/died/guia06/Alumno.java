@@ -64,7 +64,7 @@ public class Alumno implements Comparable<Alumno>{
 		
 	}
 	
-	
+	//testeado
 	public boolean cumpleConCreditos(Integer creditosNec) {
 		boolean resultado=false;
 		if(this.creditos>=creditosNec) {
@@ -73,12 +73,13 @@ public class Alumno implements Comparable<Alumno>{
 		return resultado;
 	}
 	
+	//testeado
 	public boolean comprobarCicloLec(Integer CicloLec) {
 		int contador=0;
 		boolean resultado=false;
 		for(Curso unCurso: cursando) {
 			if(unCurso!=null) {
-				if(unCurso.getCicloLec() == CicloLec) {
+				if(unCurso.getCicloLec().equals(CicloLec)) {
 					contador++;
 				}
 			}
@@ -87,9 +88,10 @@ public class Alumno implements Comparable<Alumno>{
 		return resultado;
 	}
 	
+	//testeado
 	public boolean equals(Alumno a) {
 		boolean resultado=false;
-		if(this.nroLibreta==a.nroLibreta) {
+		if(nroLibreta.equals(a.nroLibreta)) {
 			resultado=true;
 		}
 		return resultado;
@@ -109,5 +111,14 @@ public class Alumno implements Comparable<Alumno>{
 	}
 	public List<Curso> getCursados() {
 		return this.cursando;
+	}
+	
+	@Override
+	public String toString() {
+		return (this.nombre + " N° libreta: " + this.nroLibreta);
+	}
+	
+	public Integer getNLibreta() {
+		return nroLibreta;
 	}
 }

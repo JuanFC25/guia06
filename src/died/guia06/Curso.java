@@ -2,6 +2,9 @@ package died.guia06;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 import java.util.List;
 
 import died.guia06.util.Registro;
@@ -32,7 +35,8 @@ public class Curso {
 		this.log = new Registro();
 	}
 	
-	public Curso(Integer id,String nombre,Integer cicloLec,Integer cupo, Integer cred,Integer credReq) {
+	public Curso(Integer id,String nombre,Integer cicloLec,Integer cupo, 
+			Integer cred,Integer credReq) {
 		this.id=id;
 		this.nombre=nombre;
 		this.cicloLectivo=cicloLec;
@@ -57,6 +61,8 @@ public class Curso {
 	 * @param a
 	 * @return
 	 */
+	
+	//testeado(sin excepcion)
 	public Boolean inscribir(Alumno a) {
 	
 		try {
@@ -78,14 +84,35 @@ public class Curso {
 	}
 	
 	
+	public void imprimirInscriptosPorNLibreta() {
+		try {
+			log.registrar(this, "imprimir listado N° Libreta",this.inscriptos.size()+ " registros ");
+			CompararNLibreta comparador=new CompararNLibreta();
+			Collections.sort(inscriptos,comparador);
+			for(Alumno unAlumno: this.inscriptos) {
+				if(unAlumno!=null) {
+					System.out.println(unAlumno.toString());
+				}
+			}
+		} catch (IOException e) {
+			System.out.println("Ha ocurrido un error con el archivo registro. No se realizo la inscripcion, intente nuevamente");
+		}
+	}
 	
 	
 	/**
 	 * imprime los inscriptos en orden alfabetico
 	 */
+	
 	public void imprimirInscriptos() {
 		try {
 			log.registrar(this, "imprimir listado",this.inscriptos.size()+ " registros ");
+			Collections.sort(inscriptos);
+			for(Alumno unAlumno: this.inscriptos) {
+				if(unAlumno!=null) {
+					System.out.println(unAlumno.toString());
+				}
+			}
 		} catch (IOException e) {
 			System.out.println("Ha ocurrido un error con el archivo registro. No se realizo la inscripcion, intente nuevamente");
 		}
@@ -99,15 +126,10 @@ public class Curso {
 	public Integer getCreditos() { 
 		return this.creditos;
 	}
-
-	public void setAtributos(Integer id,String nombre,Integer cicloLec,Integer cupo, Integer cred,Integer credReq) {
-		this.id=id;
-		this.nombre=nombre;
-		this.cicloLectivo=cicloLec;
-		this.cupo=cupo;
-		this.creditos=cred;
-		this.creditosRequeridos=credReq;
-		this.inscriptos = new ArrayList<Alumno>();
-		this.log = new Registro();
+	
+	public List<Alumno> getInscriptos() { 
+		return this.inscriptos;
 	}
+
+	
 }
