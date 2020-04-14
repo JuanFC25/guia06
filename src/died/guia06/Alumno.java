@@ -48,9 +48,12 @@ public class Alumno implements Comparable<Alumno>{
 		if(cursando.contains(c)) {
 			cursando.remove(c);
 			aprobados.add(c);
+			c.aprobarCurso(this);
 			System.out.println("Curso Aprobado");
 		}
-		System.out.println("Usted no esta cursando el curso seleccionado.");
+		else {
+			System.out.println("Usted no esta cursando el curso seleccionado.");
+		}
 	}
 
 	//testeado
@@ -120,5 +123,12 @@ public class Alumno implements Comparable<Alumno>{
 	
 	public Integer getNLibreta() {
 		return nroLibreta;
+	}
+	
+	public boolean cursoYaAprobado(Curso c) {
+		if(aprobados.contains(c)) {
+			return true;
+		}
+		return false;
 	}
 }

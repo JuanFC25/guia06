@@ -67,5 +67,22 @@ class CursoTest {
 		assertEquals(lista, DIED.getInscriptos());
 	}
 	
+	@Test
+	void testImprimirInscriptosPorNLibreta() {
+		List<Alumno> lista=new ArrayList<Alumno>();
+		lista.add(alumno4);
+		lista.add(alumno1);
+		lista.add(alumno5);
+		lista.add(alumno2);
+		lista.add(alumno3);
+		DIED.inscribir(alumno1);
+		DIED.inscribir(alumno2);
+		DIED.inscribir(alumno3);
+		DIED.inscribir(alumno4);
+		DIED.inscribir(alumno5);
+		DIED.imprimirInscriptosPorNLibreta();
+		assertEquals(lista, DIED.getInscriptos());
+	}
+	
 
 }
